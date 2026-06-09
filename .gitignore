@@ -37,7 +37,6 @@ app.*.map.json
 
 # Secrets — never commit these
 lib/config/env.dart
-aerotaxi.apk
 web/index.html
 
 # AI assistant workspace
