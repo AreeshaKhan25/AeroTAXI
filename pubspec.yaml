@@ -1,0 +1,55 @@
+name: aerotaxi
+description: "AeroTAXI - Airport Transfer Booking App"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  go_router: ^14.8.1
+  http: ^1.2.2
+  flutter_svg: ^2.0.17
+  google_fonts: ^6.2.1
+  intl: ^0.19.0
+  cached_network_image: ^3.4.1
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  url_launcher: ^6.3.1
+  flutter_stripe: ^11.4.0
+  shared_preferences: ^2.3.4
+  flutter_secure_storage: ^9.2.2
+  font_awesome_flutter: ^10.8.0
+  shimmer: ^3.0.0
+  flutter_animate: ^4.5.2
+  mailer: ^7.1.0
+  firebase_core: ^3.0.0
+  firebase_auth: ^5.0.0
+  cloud_firestore: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logos/Aerotaxi.png"
+  adaptive_icon_background: "#1A1F3D"
+  adaptive_icon_foreground: "assets/images/logos/Aerotaxi.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/airports/
+    - assets/images/vehicles/
+    - assets/images/logos/

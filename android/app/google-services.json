@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "131043443364",
+    "project_id": "aerotaxi006",
+    "storage_bucket": "aerotaxi006.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131043443364:android:4c7b1de6915db783175c31",
+        "android_client_info": {
+          "package_name": "com.aerotaxi.aerotaxi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXTnzFv0dWfK1vmMq7gXYPGrsgW4dzQ74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

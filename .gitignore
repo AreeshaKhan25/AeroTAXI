@@ -1,0 +1,44 @@
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+**/doc/api/
+
+# Android
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+
+# iOS
+**/ios/Flutter/.last_build_id
+**/ios/Pods/
+**/ios/.symlinks/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Misc
+*.class
+*.log
+*.pyc
+.DS_Store
+.svn/
+
+# Build artifacts
+app.*.symbols
+app.*.map.json
+
+# Secrets — never commit these
+lib/config/env.dart
+aerotaxi.apk
+web/index.html
+
+# AI assistant workspace
+.claude/
