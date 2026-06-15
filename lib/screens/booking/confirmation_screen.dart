@@ -45,9 +45,14 @@ class ConfirmationScreen extends StatelessWidget {
     final price = booking?.totalPrice ?? bp.estimatedPrice;
     final vehicleName = bp.selectedVehicle?.name ?? 'Standard';
 
-    return Scaffold(
-      backgroundColor: AppTheme.surface,
-      body: SafeArea(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) context.go('/home');
+      },
+      child: Scaffold(
+        backgroundColor: AppTheme.surface,
+        body: SafeArea(
         child: Stack(
           children: [
             SingleChildScrollView(
@@ -254,6 +259,7 @@ class ConfirmationScreen extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 

@@ -86,9 +86,25 @@ class BookingProvider extends ChangeNotifier {
   List<Booking> get allBookings => _allBookings;
   bool get loadingBookings => _loadingBookings;
 
-  List<Booking> get upcomingBookings => _allBookings
-      .where((b) => b.status == 'confirmed' || b.status == 'pending')
-      .toList();
+  List<Booking> get upcomingBookings => _allBookings.where((b) {
+        if (b.status != 'confirmed' && b.status != 'pending') return false;
+        try {
+          final date = DateTime.parse(b.departDate);
+          final time = b.departTime;
+          final DateTime depart;
+          if (time != null && time.contains(':')) {
+            final parts = time.split(':');
+            depart = DateTime(date.year, date.month, date.day,
+                int.parse(parts[0]), int.parse(parts[1]));
+          } else {
+            // No time stored — keep all day if today or future
+            depart = DateTime(date.year, date.month, date.day, 23, 59, 59);
+          }
+          return !depart.isBefore(DateTime.now());
+        } catch (_) {
+          return true;
+        }
+      }).toList();
 
   List<Booking> get pastBookings => _allBookings
       .where((b) => b.status == 'completed' || b.status == 'cancelled')

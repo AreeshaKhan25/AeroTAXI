@@ -6,14 +6,14 @@
 
 <p align="center">
   <strong>Premium Airport Transfer Booking App</strong><br>
-  Built with Flutter | Stripe Payments | Turso Cloud DB | Real-time Maps
+  Built with Flutter | Stripe Payments | Firebase | Real-time Maps
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.29-blue?logo=flutter" alt="Flutter">
   <img src="https://img.shields.io/badge/Dart-3.7-blue?logo=dart" alt="Dart">
   <img src="https://img.shields.io/badge/Stripe-Integrated-blueviolet?logo=stripe" alt="Stripe">
-  <img src="https://img.shields.io/badge/Turso-Cloud_DB-green" alt="Turso">
+  <img src="https://img.shields.io/badge/Firebase-Cloud_DB-orange?logo=firebase" alt="Firebase">
   <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-orange" alt="Platform">
 </p>
 
@@ -63,11 +63,11 @@
 
 ### Booking Management
 - **Booking Confirmation** - Animated success screen with reference number
-- **Persistent History** - All bookings saved locally via SharedPreferences + Turso cloud database
+- **Persistent History** - All bookings saved locally via SharedPreferences + Firebase cloud database
 - **Upcoming Rides** - Active bookings with CONFIRMED status badges
 - **Ride Details** - Full breakdown with map, route, distance, duration, extras, flight info
 - **Rebook** - One-tap rebook from history with pre-filled locations
-- **Booking Lookup** - Search by reference number directly from Turso database
+- **Booking Lookup** - Search by reference number directly from Firebase database
 
 ### Communication
 - **Email Confirmation** - Branded HTML email via Gmail SMTP after payment (mobile only)
@@ -98,7 +98,7 @@
 | **Geocoding** | Nominatim API (OpenStreetMap) |
 | **Routing Engine** | OSRM (Open Source Routing Machine) |
 | **Payments** | Stripe (flutter_stripe native + JS interop for web) |
-| **Cloud Database** | Turso (libSQL) via HTTP pipeline API |
+| **Cloud Database** | Firebase (Firestore) |
 | **Local Storage** | SharedPreferences |
 | **Email** | Gmail SMTP via `mailer` package |
 | **Flight Validation** | FlightRadar24 Search API |
@@ -127,7 +127,7 @@ lib/
 │
 ├── providers/
 │   ├── app_provider.dart           # Airports, vehicles, FAQs data
-│   └── booking_provider.dart       # Booking state, persistence, Turso sync
+│   └── booking_provider.dart       # Booking state, persistence, Firebase sync
 │
 ├── screens/
 │   ├── splash_screen.dart          # Animated splash with logo + spinner
@@ -158,7 +158,7 @@ lib/
 │   ├── stripe_init_stub.dart       # Web stub (no-op)
 │   ├── stripe_js_interop.dart      # Stripe JS interop (web)
 │   ├── stripe_js_stub.dart         # Mobile stub (no-op)
-│   ├── turso_service.dart          # Turso cloud database operations
+│   ├── firebase_service.dart       # Firebase cloud database operations
 │   ├── email_service.dart          # Email confirmation orchestrator
 │   ├── email_sender.dart           # SMTP email sender (mobile)
 │   └── email_sender_stub.dart      # Web stub (no-op)
@@ -220,15 +220,14 @@ Each vehicle has two pricing tiers based on distance:
 - Flutter 3.19 or higher
 - Android Studio or Xcode
 - A Stripe account (test mode works)
-- A Turso account (free tier)
+- A Firebase account (free Spark plan)
 - A Crisp account (free tier)
 
 ### Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/ESE-Wahaj/aerotaxi-app.git
-cd aerotaxi-app
+git clone https://github.com/AreeshaKhan25/AeroTAXI
 
 # Install dependencies
 flutter pub get
@@ -252,7 +251,9 @@ Update the following files with your own credentials:
 | `lib/services/stripe_service.dart` | Stripe secret key |
 | `lib/services/stripe_init.dart` | Stripe publishable key |
 | `web/index.html` | Stripe publishable key (web) |
-| `lib/services/turso_service.dart` | Turso database URL + auth token |
+| `lib/services/firebase_service.dart` | Firebase project config |
+| `google-services.json` | Firebase Android config |
+| `GoogleService-Info.plist` | Firebase iOS config |
 | `lib/screens/chat/chat_screen.dart` | Crisp website ID |
 | `lib/services/email_sender.dart` | Gmail address + app password |
 
@@ -267,7 +268,7 @@ Update the following files with your own credentials:
 | **OSRM** | Route calculation and distance | None | Unlimited |
 | **FlightRadar24** | Flight number validation | None | Unlimited |
 | **Stripe** | Payment processing | API keys | Test mode free |
-| **Turso** | Cloud database | Auth token | 9GB free |
+| **Firebase** | Cloud database | Firebase config | 1GB storage free |
 | **Gmail SMTP** | Email confirmation | App password | 500/day |
 | **Crisp** | Live chat support | Website ID | 2 agents free |
 
@@ -276,7 +277,7 @@ Update the following files with your own credentials:
 ## Architecture Decisions
 
 - **Platform-conditional imports** - Stripe SDK on mobile, JS interop on web (no `dart:io` on web)
-- **Fire-and-forget Turso sync** - Bookings save locally first, sync to cloud non-blocking
+- **Fire-and-forget Firebase sync** - Bookings save locally first, sync to cloud non-blocking
 - **Email after payment only** - Confirmation email fires only after Stripe payment succeeds
 - **No backend dependency** - App works fully offline; API calls are optional with local fallbacks
 - **Editorial design over utilitarian** - Tonal surfaces instead of borders, ambient shadows instead of drop shadows

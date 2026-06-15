@@ -10,7 +10,12 @@ class AppShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PopScope(
+      canPop: navigationShell.currentIndex == 0,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) navigationShell.goBranch(0, initialLocation: true);
+      },
+      child: Scaffold(
       backgroundColor: AppTheme.surface,
       // Use a Column so the nav bar is a sibling of the content,
       // not a Scaffold bottomNavigationBar — this avoids SafeArea
@@ -35,6 +40,7 @@ class AppShell extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }
