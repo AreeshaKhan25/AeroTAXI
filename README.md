@@ -303,6 +303,6 @@ This project is proprietary. All rights reserved.
 ---
 
 <p align="center">
-  Built with Flutter & Claude AI<br>
+  Built with Flutter & Love<br>
   <sub>AeroTaxi - Premium Airport Transfers</sub>
 </p>
